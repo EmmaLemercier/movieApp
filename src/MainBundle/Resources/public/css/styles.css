@@ -1,0 +1,12 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+#banner
+{    
+    text-align: center !important;
+    font-size: 3em;
+    color: #0099cc;
+    /*padding: 1% 0 1%;*/
+}
