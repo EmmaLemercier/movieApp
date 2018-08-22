@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-3 titre">
+                Titre film
+            </div>
+            <div class="col-sm-3">
+                {{ film.titreFilm }}
+            </div>
+            <div class="col-sm-3 titre">
+                Année réalisation
+            </div>
+            <div class="col-sm-3">
+                {{ film.anneeRealisationFilm }}
+            </div>
+        </div>
+        <div class="row titre">
+            <div class="col-sm-12">
+                Description
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {{ film.descriptionFilm }}
+            </div>
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+                Comédien(s) 
+            </div>
+        </h2>
+        <div class="row">
+            {% for comedien in film.comediensFilm %}
+                <div class="col-sm-4">
+                    <a href="{{ path('personne_detail', {'idPersonne' : comedien.id}) }}">{{ comedien.prenomPersonne }} {{ comedien.nomPersonne }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+                Réalisateur(s) 
+            </div>
+        </h2>
+        <div class="row">
+            {% for realisateur in film.realisateursFilm %}
+                <div class="col-sm-4">
+                    <a href="{{ path('personne_detail', {'idPersonne' : realisateur.id}) }}">{{ realisateur.prenomPersonne }} {{ realisateur.nomPersonne }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+                Scénariste(s) 
+            </div>
+        </h2>
+        <div class="row"> 
+            {% for scenariste in film.scenaristesFilm %}
+                <div class="col-sm-4">
+                    <a href="{{ path('personne_detail', {'idPersonne' : scenariste.id}) }}">{{ scenariste.prenomPersonne }} {{ scenariste.nomPersonne }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}

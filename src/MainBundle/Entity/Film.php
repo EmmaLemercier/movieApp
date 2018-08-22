@@ -1,0 +1,235 @@
+<?php
+
+namespace MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Film
+ *
+ * @ORM\Table(name="film")
+ * @ORM\Entity(repositoryClass="MainBundle\Repository\FilmRepository")
+ */
+class Film
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titreFilm", type="string", length=255)
+     */
+    private $titreFilm;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="anneeRealisationFilm", type="integer")
+     */
+    private $anneeRealisationFilm;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descriptionFilm", type="text")
+     */
+    private $descriptionFilm;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Personne", inversedBy="filmsComedien")
+    * @ORM\JoinTable(name="comediens_film")
+    */
+    private $comediensFilm;
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="Personne", inversedBy="filmsRealisateur")
+    * @ORM\JoinTable(name="realisateurs_film")
+    */
+    private $realisateursFilm;
+    
+    /**
+    * @ORM\ManyToMany(targetEntity="Personne", inversedBy="filmsScenariste")
+    * @ORM\JoinTable(name="scenaristes_film")
+    */
+    private $scenaristesFilm;
+
+    public function __construct()
+    {
+        $this->comediensFilm = new ArrayCollection();
+        $this->realisateursFilm = new ArrayCollection();
+        $this->scenaristesFilm = new ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titreFilm
+     *
+     * @param string $titreFilm
+     *
+     * @return Film
+     */
+    public function setTitreFilm($titreFilm)
+    {
+        $this->titreFilm = $titreFilm;
+
+        return $this;
+    }
+
+    /**
+     * Get titreFilm
+     *
+     * @return string
+     */
+    public function getTitreFilm()
+    {
+        return $this->titreFilm;
+    }
+
+    /**
+     * Set anneeRealisationFilm
+     *
+     * @param integer $anneeRealisationFilm
+     *
+     * @return Film
+     */
+    public function setAnneeRealisationFilm($anneeRealisationFilm)
+    {
+        $this->anneeRealisationFilm = $anneeRealisationFilm;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeRealisationFilm
+     *
+     * @return int
+     */
+    public function getAnneeRealisationFilm()
+    {
+        return $this->anneeRealisationFilm;
+    }
+
+    /**
+     * Set descriptionFilm
+     *
+     * @param string $descriptionFilm
+     *
+     * @return Film
+     */
+    public function setDescriptionFilm($descriptionFilm)
+    {
+        $this->descriptionFilm = $descriptionFilm;
+
+        return $this;
+    }
+
+    /**
+     * Get descriptionFilm
+     *
+     * @return string
+     */
+    public function getDescriptionFilm()
+    {
+        return $this->descriptionFilm;
+    }
+    
+    /**
+     * @return Collection|Personne[]
+     */
+    public function getComediensFilm()
+    {
+        return $this->comediensFilm;
+    }
+
+    public function addComedienFilm(Personne $comedienFilm)
+    {
+        if (!$this->comediensFilm->contains($comedienFilm)) {
+            $this->comediensFilm[] = $comedienFilm;
+            $comedienFilm->addFilmsComedien($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComedienFilm(Personne $comedienFilm)
+    {
+        if ($this->comediensFilm->contains($comedienFilm)) {
+            $this->comediensFilm->removeElement($comedienFilm);
+            $comedienFilm->removeFilmsComedien($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Personne[]
+     */
+    public function getRealisateursFilm()
+    {
+        return $this->realisateursFilm;
+    }
+
+    public function addRealisateurFilm(Personne $realisateurFilm)
+    {
+        if (!$this->realisateursFilm->contains($realisateurFilm)) {
+            $this->realisateursFilm[] = $realisateurFilm;
+            $realisateurFilm->addFilmsRealisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRealisateurFilm(Personne $realisateurFilm)
+    {
+        if ($this->realisateursFilm->contains($realisateurFilm)) {
+            $this->realisateursFilm->removeElement($realisateurFilm);
+            $realisateurFilm->removeFilmsRealisateur($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Personne[]
+     */
+    public function getScenaristesFilm()
+    {
+        return $this->scenaristesFilm;
+    }
+
+    public function addScenaristeFilm(Personne $scenaristeFilm)
+    {
+        if (!$this->scenaristesFilm->contains($scenaristeFilm)) {
+            $this->scenaristesFilm[] = $scenaristeFilm;
+            $scenaristeFilm->addFilmsScenariste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScenaristeFilm(Personne $scenaristeFilm)
+    {
+        if ($this->scenaristesFilm->contains($scenaristeFilm)) {
+            $this->scenaristesFilm->removeElement($scenaristeFilm);
+            $scenaristeFilm->removeFilmsScenariste($this);
+        }
+
+        return $this;
+    }
+}
