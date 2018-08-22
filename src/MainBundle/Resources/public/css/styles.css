@@ -8,5 +8,11 @@
     text-align: center !important;
     font-size: 3em;
     color: #0099cc;
-    /*padding: 1% 0 1%;*/
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+.titre
+{
+    font-weight: bold !important;
 }
