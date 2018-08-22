@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="offset-sm-1 col-sm-4">
+        <a href="{{ path('liste_films') }}" class="btn btn-primary btn-lg btn-block" role="button" title="Films">Films</a>
+    </div>
+    <div class="offset-sm-2 col-sm-4">
+        <a href="{{ path('liste_personnes') }}" class="btn btn-primary btn-lg btn-block" role="button" title="Personnes">Personnes</a>
+    </div>
+{% endblock body %}

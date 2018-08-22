@@ -1,0 +1,22 @@
+#---------------------------------- DEFAULT -----------------------------------------------------
+index:
+    path:  /
+    defaults: { _controller: "MainBundle:Default:index"}
+   
+#---------------------------------- MOVIES -----------------------------------------------------
+liste_films:
+    path:  /liste-films
+    defaults: { _controller: "MainBundle:Film:list"}
+    
+film_detail:
+    path:  /film-detail/{idFilm}
+    defaults: { _controller: "MainBundle:Film:detail"}
+ 
+#---------------------------------- PERSONS -----------------------------------------------------
+liste_personnes:
+    path:  /liste-personnes
+    defaults: { _controller: "MainBundle:Personne:list"}
+    
+personne_detail:
+    path:  /personne-detail/{idPersonne}
+    defaults: { _controller: "MainBundle:Personne:detail"}
