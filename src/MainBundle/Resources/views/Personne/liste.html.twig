@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for personne in personnes %}
+        <div class="col-sm-4">
+            <a href="{{ path('personne_detail', {'idPersonne' : personne.id}) }}">{{ personne.prenomPersonne }}{{ personne.nomPersonne }}</a>
+        </div>
+    {% endfor %}
+{% endblock body %}

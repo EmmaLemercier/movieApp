@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm- titre">
+                Identité
+            </div>
+            <div class="col-sm-8">
+                {{ personne.prenomPersonne }}{{ personne.nomPersonne }}
+            </div>
+        </div>
+        <div class="row titre">
+            <div class="col-sm-12">
+                Descriptif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {{ personne.descriptifPersonne }}
+            </div>
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+                Comédien
+            </div>
+        </h2>
+        <div class="row">
+            {% for film in personne.filmsComedien %}
+                <div class="col-sm-4">
+                    <a href="{{ path('film_detail', {'idFilm' : film.id}) }}">{{ film.titreFilm }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+               Réalisateur
+            </div>
+        </h2>
+        <div class="row">
+            {% for film in personne.filmsRealisateur %}
+                <div class="col-sm-4">
+                   <a href="{{ path('film_detail', {'idFilm' : film.id}) }}">{{ film.titreFilm }}</a>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class="row"> 
+            <div class="col-sm-12">
+                Scénariste 
+            </div>
+        </h2>
+        <div class="row"> 
+            {% for film in personne.filmsScenariste %}
+                <div class="col-sm-4">
+                    <a href="{{ path('film_detail', {'idFilm' : film.id}) }}">{{ film.titreFilm }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
